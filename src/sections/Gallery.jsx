@@ -80,7 +80,7 @@ export default function Gallery() {
               {photos.map((item, index) => (
                 <button
                   key={item.src}
-                  className="gallery-item"
+                  className={`gallery-item ${item.height > item.width ? "gallery-item-portrait" : ""}`}
                   type="button"
                   onClick={() => setSelected(index)}
                   aria-label={`Hap fotografinë: ${item.alt}`}

@@ -13,6 +13,8 @@ export default function Hero() {
           className="hero-photo"
           src={site.heroImage}
           alt="Ambienti i Premium Fitness Gym"
+          width="1284"
+          height="844"
           fetchPriority="high"
         />
       )}
@@ -39,9 +41,11 @@ export default function Hero() {
             EKSPLORO PALESTRËN <ArrowDown size={18} aria-hidden="true" />
           </a>
         </div>
-        <div className="hero-signature" aria-hidden="true">
-          <img src={site.logo} alt="" width="648" height="124" />
-        </div>
+        {!site.heroImage && (
+          <div className="hero-signature" aria-hidden="true">
+            <img src={site.logo} alt="" width="648" height="124" />
+          </div>
+        )}
         <a href="#about" className="scroll-link">
           VAZHDO MË POSHTË <ArrowDown size={16} aria-hidden="true" />
         </a>

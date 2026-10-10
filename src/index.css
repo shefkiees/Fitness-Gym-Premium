@@ -311,7 +311,24 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  background: #0009;
+  background: #0007;
+}
+.has-photo .hero-track {
+  display: none;
+}
+.has-photo .hero-copy,
+.has-photo .hero-eyebrow,
+.has-photo .scroll-link {
+  color: #eee;
+}
+.has-photo .hero-content {
+  text-shadow: 0 2px 14px #000;
+}
+.has-photo .button {
+  text-shadow: none;
+}
+.has-photo .button-outline {
+  background: #08080880;
 }
 .hero-eyebrow {
   color: #bbb;
@@ -636,6 +653,9 @@ h3 {
 }
 .gallery-item:hover img {
   transform: scale(1.04);
+}
+.gallery-item-portrait img {
+  object-fit: contain;
 }
 .gallery-item span {
   display: flex;

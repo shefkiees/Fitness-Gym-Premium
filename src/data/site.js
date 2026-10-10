@@ -8,8 +8,8 @@ export const site = {
   hours: "09:00–23:00",
   days: "E hënë – e shtunë",
   logo: "/images/premium-logo.png",
-  heroImage: null,
-  aboutImage: null,
+  heroImage: "/images/gym-overview.webp",
+  aboutImage: "/images/gym-free-weights.webp",
 };
 
 export const navigation = [
@@ -28,10 +28,60 @@ export const services = [
     title: "Stërvitje në palestër",
     description:
       "Premium Fitness Gym mirëpret meshkuj dhe femra për stërvitje në Vushtrri.",
-    image: null,
+    image: "/images/gym-machines.webp",
   },
 ];
 
 // Authorized photos: { src, alt, width, height, category }.
-// Categories: ambient, equipment, training. Empty until real photos are supplied.
-export const galleryImages = [];
+// Categories: ambient, equipment, training. Photos supplied by the project owner.
+export const galleryImages = [
+  {
+    src: "/images/gym-overview.webp",
+    alt: "Pamje e përgjithshme e palestrës",
+    width: 1284,
+    height: 844,
+    category: "ambient",
+  },
+  {
+    src: "/images/gym-machines.webp",
+    alt: "Pajisjet e stërvitjes në Premium Fitness Gym",
+    width: 1284,
+    height: 844,
+    category: "equipment",
+  },
+  {
+    src: "/images/gym-cardio.webp",
+    alt: "Shiritat e vrapimit pranë dritareve",
+    width: 1284,
+    height: 857,
+    category: "equipment",
+  },
+  {
+    src: "/images/gym-free-weights.webp",
+    alt: "Zona me pesha dhe shtanga",
+    width: 1284,
+    height: 871,
+    category: "equipment",
+  },
+  {
+    src: "/images/gym-training-area.webp",
+    alt: "Hapësira e ushtrimeve me pasqyra",
+    width: 1284,
+    height: 861,
+    category: "training",
+  },
+  {
+    src: "/images/gym-training-poster.webp",
+    alt: "Hapësira e stërvitjes — Mbylle javën më i fortë",
+    width: 1284,
+    height: 1699,
+    category: "training",
+  },
+  {
+    src: "/images/gym-interior-poster.webp",
+    alt: "Ambienti i palestrës — Fundjava nuk është pushim nga qëllimet",
+    width: 1284,
+    height: 1664,
+    category: "ambient",
+  },
+];

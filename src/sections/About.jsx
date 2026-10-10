@@ -12,8 +12,8 @@ export default function About() {
             alt={
               site.aboutImage ? "Ambientet e Premium Fitness Gym" : site.name
             }
-            width={site.aboutImage ? 1000 : 648}
-            height={site.aboutImage ? 800 : 124}
+            width={site.aboutImage ? 1284 : 648}
+            height={site.aboutImage ? 871 : 124}
             loading="lazy"
             decoding="async"
           />
