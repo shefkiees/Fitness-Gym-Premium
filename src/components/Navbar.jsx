@@ -1,43 +1,88 @@
-import { Menu } from 'lucide-react';
-import LogoPlaceholder from './LogoPlaceholder.jsx';
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import Logo from "./Logo.jsx";
+import { navigation } from "../data/site.js";
 
-const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Membership', href: '#membership' },
-  { label: 'Contact', href: '#contact' },
-];
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const toggle = useRef(null);
+  const menu = useRef(null);
 
-function Navbar() {
+  useEffect(() => {
+    if (!open) return;
+    menu.current?.querySelector("a")?.focus();
+    const close = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggle.current?.focus();
+      }
+    };
+    const outside = (event) => {
+      if (!event.target.closest(".site-header")) setOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 1100px)");
+    const resize = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    document.addEventListener("keydown", close);
+    document.addEventListener("pointerdown", outside);
+    desktop.addEventListener("change", resize);
+    return () => {
+      document.removeEventListener("keydown", close);
+      document.removeEventListener("pointerdown", outside);
+      desktop.removeEventListener("change", resize);
+    };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-premium-black/95 backdrop-blur">
-      <nav className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <LogoPlaceholder />
-
-        <div className="hidden items-center gap-7 md:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-white/75 transition hover:text-premium-orange"
-            >
+    <header className="site-header">
+      <nav className="container navbar" aria-label="Navigimi kryesor">
+        <Logo />
+        <div className="desktop-navigation">
+          {navigation.map((item) => (
+            <a key={item.href} href={item.href}>
               {item.label}
             </a>
           ))}
         </div>
-
+        <a className="button button-primary nav-cta" href="#contact">
+          BËHU ANËTAR <ArrowUpRight size={17} aria-hidden="true" />
+        </a>
         <button
-          className="inline-flex h-10 w-10 items-center justify-center border border-white/15 text-premium-white md:hidden"
+          ref={toggle}
+          className="menu-toggle icon-button"
+          onClick={() => setOpen(!open)}
           type="button"
-          aria-label="Open navigation"
+          aria-label={open ? "Mbyll menunë" : "Hap menunë"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          title={open ? "Mbyll menunë" : "Hap menunë"}
         >
-          <Menu size={20} aria-hidden="true" />
+          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
       </nav>
+      <div
+        ref={menu}
+        id="mobile-navigation"
+        className="mobile-navigation"
+        hidden={!open}
+      >
+        <nav className="container" aria-label="Navigimi në telefon">
+          {navigation.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+              {item.label}
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+          ))}
+          <a
+            href="#contact"
+            className="mobile-join"
+            onClick={() => setOpen(false)}
+          >
+            BËHU ANËTAR <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+        </nav>
+      </div>
     </header>
   );
 }
-
-export default Navbar;

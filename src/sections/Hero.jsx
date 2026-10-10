@@ -1,25 +1,77 @@
-function Hero() {
-  return (
-    <section id="home" className="bg-premium-black">
-      <div className="section-shell grid min-h-[calc(100vh-5rem)] items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          <p className="section-kicker">Vushtrri, Kosove</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-black uppercase leading-tight text-premium-white sm:text-5xl lg:text-6xl">
-            Fitness Gym Premium
-          </h1>
-          <p className="section-copy">
-            Skelet fillestar per website-in zyrtar. Permbajtja, fotografite dhe detajet e biznesit do te plotesohen pas konfirmimit.
-          </p>
-        </div>
+import { ArrowDown, ArrowUpRight, Clock3, MapPin, Users } from "lucide-react";
+import { site } from "../data/site.js";
 
-        <div className="min-h-72 border border-dashed border-white/25 bg-premium-charcoal p-6">
-          <div className="flex h-full min-h-60 items-center justify-center text-center text-sm font-medium uppercase tracking-wide text-white/45">
-            Vend per fotografine kryesore te fitnesit
+export default function Hero() {
+  return (
+    <section
+      id="home"
+      className={`hero ${site.heroImage ? "has-photo" : ""}`}
+      aria-labelledby="hero-title"
+    >
+      {site.heroImage && (
+        <img
+          className="hero-photo"
+          src={site.heroImage}
+          alt="Ambienti i Premium Fitness Gym"
+          fetchPriority="high"
+        />
+      )}
+      <div className="hero-track" aria-hidden="true" />
+      <div className="container hero-content">
+        <p className="eyebrow hero-eyebrow">
+          <span className="status-dot" /> {site.location}
+        </p>
+        <p className="hero-brand">PREMIUM FITNESS GYM</p>
+        <h1 id="hero-title">
+          FORCA JOTE.
+          <br />
+          <span>LIMITET E TUA.</span>
+        </h1>
+        <p className="hero-copy">
+          Stërvitu me përkushtim dhe puno çdo ditë drejt versionit tënd më të
+          fortë.
+        </p>
+        <div className="actions">
+          <a href="#contact" className="button button-primary">
+            BËHU ANËTAR <ArrowUpRight size={20} aria-hidden="true" />
+          </a>
+          <a href="#about" className="button button-outline">
+            EKSPLORO PALESTRËN <ArrowDown size={18} aria-hidden="true" />
+          </a>
+        </div>
+        <div className="hero-signature" aria-hidden="true">
+          <img src={site.logo} alt="" width="648" height="124" />
+        </div>
+        <a href="#about" className="scroll-link">
+          VAZHDO MË POSHTË <ArrowDown size={16} aria-hidden="true" />
+        </a>
+      </div>
+      <div className="hero-facts">
+        <div className="container facts-grid">
+          <div>
+            <Clock3 aria-hidden="true" />
+            <p>
+              <span>{site.days}</span>
+              <strong>{site.hours}</strong>
+            </p>
           </div>
+          <div>
+            <Users aria-hidden="true" />
+            <p>
+              <span>Përkushtim pa dallim</span>
+              <strong>Për meshkuj dhe femra</strong>
+            </p>
+          </div>
+          <a href={site.maps} target="_blank" rel="noopener noreferrer">
+            <MapPin aria-hidden="true" />
+            <p>
+              <span>Na gjeni në</span>
+              <strong>{site.location}</strong>
+            </p>
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>
   );
 }
-
-export default Hero;
